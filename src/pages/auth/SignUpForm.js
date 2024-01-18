@@ -5,18 +5,18 @@ import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
-import {
-    Form,
-    Button,
-    Image,
-    Col,
-    Row,
-    Container,
-    Alert,
-} from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
 import axios from "axios";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = () => {
+    useRedirect("loggedIn");
     const [signUpData, setSignUpData] = useState({
         username: "",
         password1: "",
@@ -64,7 +64,7 @@ const SignUpForm = () => {
                             />
                         </Form.Group>
                         {errors.username?.map((message, idx) => (
-                            <Alert variant="warning" key={idx} style={{ fontSize: '1rem' }} >
+                            <Alert variant="warning" key={idx}>
                                 {message}
                             </Alert>
                         ))}
@@ -81,7 +81,7 @@ const SignUpForm = () => {
                             />
                         </Form.Group>
                         {errors.password1?.map((message, idx) => (
-                            <Alert key={idx} variant="warning" style={{ fontSize: '1rem' }}>
+                            <Alert key={idx} variant="warning">
                                 {message}
                             </Alert>
                         ))}
@@ -98,7 +98,7 @@ const SignUpForm = () => {
                             />
                         </Form.Group>
                         {errors.password2?.map((message, idx) => (
-                            <Alert key={idx} variant="warning" style={{ fontSize: '1rem' }}>
+                            <Alert key={idx} variant="warning">
                                 {message}
                             </Alert>
                         ))}
@@ -110,7 +110,7 @@ const SignUpForm = () => {
                             Sign up
                         </Button>
                         {errors.non_field_errors?.map((message, idx) => (
-                            <Alert key={idx} variant="warning" style={{ fontSize: '1rem' }}>
+                            <Alert key={idx} variant="warning" className="mt-3">
                                 {message}
                             </Alert>
                         ))}
@@ -118,7 +118,7 @@ const SignUpForm = () => {
                 </Container>
 
                 <Container className={`mt-3 ${appStyles.Content}`}>
-                    <Link className={styles.Link} to="/signin" style={{ fontSize: '1.2rem' }}>
+                    <Link className={styles.Link} to="/signin">
                         Already have an account? <span>Sign in</span>
                     </Link>
                 </Container>
